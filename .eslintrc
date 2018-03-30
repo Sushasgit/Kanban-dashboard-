@@ -1,8 +1,24 @@
 {
   "parser": "babel-eslint",
+  "plugins": [
+    "eslint-plugin-react"
+  ],
+  "globals": {
+    "window": false
+  },
   "rules": {
     "max-len": [1, 120, 2, {"ignoreComments": true}],
-    "prop-types": [2]
+    "prop-types": [0],
+    "import/prefer-default-export": "off",
+    "no-extra-parens": 0,
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "class-methods-use-this": "warn"
+
   },
-  "extends": ["airbnb-base"]
+  "extends": ["airbnb-base"],
+
+  "env": {
+    "browser": true
+  }
 }
