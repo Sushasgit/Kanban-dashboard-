@@ -2,7 +2,7 @@ import {
   CREATE_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
   CREATE_USER_FAIL,
-} from '../actions/authActions';
+} from '../constants/constants';
 
 const initialState = {
   isAuthenticated: false,

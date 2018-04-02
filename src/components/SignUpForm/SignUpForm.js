@@ -1,7 +1,31 @@
-/* eslint-disable */
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-/* eslint-enable */
+import { StyleSheet, css } from 'aphrodite';
+
+const styles = StyleSheet.create({
+  form: {
+    marginTop: '40px',
+    width: '19%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+
+  input: {
+    width: '100%',
+    height: '36px',
+    borderRadius: '9px',
+    border: 'none',
+  },
+
+  btn: {
+    backgroundColor: '#22223B',
+    color: '#fff',
+    padding: '15px 60px',
+    fontSize: '100%',
+    marginTop: '20px',
+  },
+});
 
 const renderField =
   ({
@@ -12,11 +36,11 @@ const renderField =
   }) => {
     const hasError = (touched && error) ? 'has-danger' : '';
     return (
-      <div className={`form-group ${hasError}`}>
+      <div className={`${hasError}`}>
         <label>{label}</label>
         <div>
-          <input {...input} placeholder={label} type={type} className="form-control" />
-          {touched && error && <div className="form-control-feedback">{error}</div>}
+          <input {...input} placeholder={label} type={type} className={css(styles.input)} />
+          {touched && error && <div>{error}</div>}
         </div>
       </div>
     );
@@ -33,11 +57,11 @@ const SignUpForm = (props) => {
   const { handleSubmit } = props;
   const errors = props.errors ? renderErrors(props.errors) : null;
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={css(styles.form)} onSubmit={handleSubmit}>
       {errors}
       <Field name="email" type="email" component={renderField} label="Email" />
       <Field name="password" type="password" component={renderField} label="Password" />
-      <button type="submit" className="btn btn-primary">Sign up</button>
+      <button type="submit" className={css(styles.btn)}>Sign up</button>
     </form>
   );
 };

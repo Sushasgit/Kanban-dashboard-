@@ -1,6 +1,9 @@
 const path = require('path');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const src = path.resolve(__dirname, 'src');
+const dist = path.resolve(__dirname, 'dist');
 
 module.exports = {
   devtool: "cheap-module-source-map",
@@ -9,6 +12,16 @@ module.exports = {
     host: '127.0.0.1',
     port: 8088,
     historyApiFallback: true,
+  },
+
+  entry: [
+    path.resolve(src, 'index.js'),
+    path.resolve(src, 'styles.css')
+  ],
+
+  output: {
+    path: dist,
+    filename: 'bundle.js'
   },
 
   module: {
@@ -39,20 +52,34 @@ module.exports = {
 
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"]
+        use: ExtractTextPlugin.extract({
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1
+              }
+            },
+            'postcss-loader'
+          ]
+        })
       }
     ]
   },
 
   plugins: [
+    new CleanWebpackPlugin(dist, {
+      root: __dirname,
+      verbose: true
+    }),
+
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
     }),
 
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+    new ExtractTextPlugin({
+      filename: "[name].css"
     })
   ]
 };
