@@ -12,28 +12,44 @@ export const fetchListSuccess = lists => ({
   payload: lists,
 });
 
-export function createList (listTitle, listId) {
+export const changeTitleSuccess = list => ({
+  type: constants.CHANGE_LIST_TITLE,
+  payload: list,
+});
+
+export function createList(listTitle, listId) {
   const db = firebase.database();
 
   return (dispatch) => {
     const userID = firebase.auth().currentUser.uid;
     dispatch(createListSuccess(listTitle, listId));
-    db.ref(`users/${userID}/lists`).push({ listTitle: listTitle, listId: listId });
+    db.ref(`users/${userID}/lists`).push({ listTitle, listId });
   };
 }
 
 export function getAllLists() {
   const db = firebase.database();
   return (dispatch) => {
-    const userID = firebase.auth().currentUser.uid;
+    // const userID = firebase.auth().currentUser.uid;
+    const userID = window.localStorage.getItem('id');
     const lists = db.ref(`users/${userID}/lists`);
-    lists.on('value', snapshot => {
+    lists.on('value', (snapshot) => {
       const arr = [];
-      snapshot.forEach(childItem => {
+      snapshot.forEach((childItem) => {
         const childData = childItem.val();
-          arr.push(childData);
-    });
+        arr.push(childData);
+      });
       dispatch(fetchListSuccess(arr));
     });
+  };
+}
+
+export function changeListTitle(listTitle, listId) {
+  const db = firebase.database();
+
+  return (dispatch) => {
+    const userID = firebase.auth().currentUser.uid;
+    dispatch(changeTitleSuccess(listTitle, listId));
+    db.ref(`users/${userID}/lists`).push({ listTitle, listId });
   };
 }

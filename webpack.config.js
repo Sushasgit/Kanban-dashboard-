@@ -21,7 +21,8 @@ module.exports = {
 
   output: {
     path: dist,
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
 
   module: {
@@ -79,7 +80,7 @@ module.exports = {
     }),
 
     new ExtractTextPlugin({
-      filename: "[name].css"
+      filename: "styles.css"
     })
   ]
 };

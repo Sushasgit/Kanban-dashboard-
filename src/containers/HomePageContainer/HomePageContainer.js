@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Home from '../../components/HomePage/Homepage';
 
 const mapStateToProps = state => ({
-  authenticated: state.auth.authenticated,
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 export default connect(mapStateToProps)(Home);

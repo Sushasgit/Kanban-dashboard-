@@ -12,15 +12,13 @@ class AddListsContainer extends Component {
     };
   }
 
-  handleBlur = () => { (
-    this.setState({ isOpen: false })
-  ) };
+  handleBlur = () => { (this.setState({ isOpen: false })); };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ listTitle: event.target.value });
   };
 
-  handleKeyDown = event => {
+  handleKeyDown = (event) => {
     if (event.keyCode === 13) {
       event.preventDefault();
       this.handleSubmit();
@@ -30,7 +28,6 @@ class AddListsContainer extends Component {
   };
 
   handleSubmit = () => {
-    const { dispatch, boardId } = this.props;
     const { listTitle } = this.state;
     const listId = Math.floor(Math.random() * (100 - 5)) + 5;
     if (listTitle === '') return;

@@ -5,6 +5,8 @@ import { history } from '../../history';
 export default function (ComposedComponent) {
   class Authentication extends Component {
     componentWillMount() {
+      console.log('I`m here!');
+
       if (!this.props.isAuthenticated) {
         history.push('/');
       }

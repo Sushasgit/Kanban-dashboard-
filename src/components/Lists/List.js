@@ -1,13 +1,19 @@
 import React, { Fragment } from 'react';
+import { StyleSheet, css } from 'aphrodite';
+import ListHeaderContainer from '../../containers/ListHeaderContainer/ListHeaderContainer';
 
-export default (props) => (
+const styles = StyleSheet.create({
+  lists: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    maxWidth: '1900px',
+  },
+});
 
-    <Fragment>
-    <div>
-      { props.lists &&
-        props.lists.map(item =>{ return <div key={item.listTitle}>{item.listTitle}</div> })
-      }
-    </div>
+export default props => (
+  <Fragment>
+    <section className={css(styles.lists)}>
+      <ListHeaderContainer {...props.lists}/>
+    </section>
   </Fragment>
 );
-

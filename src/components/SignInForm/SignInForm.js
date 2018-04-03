@@ -4,7 +4,7 @@ import { StyleSheet, css } from 'aphrodite';
 
 const styles = StyleSheet.create({
   form: {
-    marginTop: '40px',
+    marginTop: '80px',
     width: '19%',
     display: 'flex',
     flexDirection: 'column',
@@ -16,14 +16,25 @@ const styles = StyleSheet.create({
     height: '36px',
     borderRadius: '9px',
     border: 'none',
+    marginBottom: '20px',
+    paddingLeft: '14px',
+  },
+
+  label: {
+    color: '#fbd854',
   },
 
   btn: {
-    backgroundColor: '#22223B',
-    color: '#fff',
-    padding: '15px 60px',
-    fontSize: '100%',
+    backgroundColor: '#fbd854',
+    color: '#252849',
+    fontSize: '1.2em',
     marginTop: '20px',
+    border: 'none',
+    fontWeight: '900',
+    width: '100%',
+    textAlign: 'center',
+    marginBottom: '20px',
+    padding: '13px 0',
   },
 });
 
@@ -37,7 +48,7 @@ const renderField =
     const hasError = (touched && error) ? 'has-danger' : '';
     return (
       <div className={ `form-group ${hasError}` }>
-        <label>{ label }</label>
+        <label className={css(styles.label)}>{ label }</label>
         <div>
           <input {...input} placeholder={label} type={type} className={css(styles.input)} />
           { touched && error && <div className="form-control-feedback">{error}</div> }

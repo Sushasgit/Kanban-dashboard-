@@ -8,17 +8,19 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    height: '70vh',
-    padding: '120px',
+    padding: '40px',
   },
 
   alabaster: {
-    backgroundColor: '#F2E9E4',
+    backgroundColor: '#252849',
   },
 
   title: {
-    margin: 0,
+    fontSize: '44px',
+    color: '#fbd854',
+    margin: '20px',
   },
+
 });
 
 export default () => (

@@ -1,5 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+@import url('https://fonts.googleapis.com/css?family=Kanit');
+
 body {
     margin: 0;
     padding: 0;
-    font: 100% / 1.5 system-ui;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    max-width: 900px;
+}
+
+.error-danger {
+    color:#f4442e;
+    text-align: center;
+    font-size: 0.9em;
 }

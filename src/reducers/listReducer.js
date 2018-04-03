@@ -1,15 +1,10 @@
-import {
-  ADD_LIST,
-  CHANGE_LIST_TITLE,
-  DELETE_LIST,
-  FETCH_ALL_LISTS
-} from '../constants/constants';
+import * as constants from '../constants/constants';
 
 const initialState = {};
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_LIST': {
+    case constants.ADD_LIST: {
       const { listId, listTitle } = action.payload;
       return {
         ...state,
@@ -17,14 +12,14 @@ export default (state = initialState, action) => {
       };
     }
 
-      case 'FETCH_ALL_LISTS': {
+    case constants.FETCH_ALL_LISTS: {
       return {
         ...state,
         lists: action.payload,
       };
     }
 
-    case 'CHANGE_LIST_TITLE': {
+    case constants.CHANGE_LIST_TITLE: {
       const { listId, listTitle } = action.payload;
       return {
         ...state,
@@ -32,7 +27,7 @@ export default (state = initialState, action) => {
       };
     }
 
-    case 'DELETE_LIST': {
+    case constants.DELETE_LIST: {
       const { listId } = action.payload;
       const { [listId]: deletedList, ...restOfLists } = state;
       return restOfLists;

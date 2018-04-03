@@ -13,7 +13,9 @@
     "no-extra-parens": 0,
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
-    "class-methods-use-this": "warn"
+    "class-methods-use-this": "warn",
+    "object-shorthand":"warn",
+    "no-nested-ternary":"warn"
 
   },
   "extends": ["airbnb-base"],

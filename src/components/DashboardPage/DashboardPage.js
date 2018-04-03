@@ -3,10 +3,10 @@ import AddListsContainer from '../../containers/AddListsContainer/AddListsContai
 import UserListsContainer from '../../containers/UserListsContainer/UserListsContainer';
 
 export default () => (
-    <div className="container">
+    <div>
       Dashboard here
       <AddListsContainer/>
-      <UserListsContainer/>
+        <UserListsContainer/>
     </div>
 );
 

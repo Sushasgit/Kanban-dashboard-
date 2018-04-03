@@ -1,29 +1,47 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { StyleSheet, css } from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
 const styles = StyleSheet.create({
   form: {
     marginTop: '40px',
-    width: '19%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    width: '20%',
   },
 
   input: {
     width: '100%',
     height: '36px',
-    borderRadius: '9px',
+    borderRadius: '3px',
     border: 'none',
+    marginBottom: '20px',
+    paddingLeft: '14px',
+  },
+
+  label: {
+    color: '#fbd854',
   },
 
   btn: {
-    backgroundColor: '#22223B',
-    color: '#fff',
-    padding: '15px 60px',
-    fontSize: '100%',
+    backgroundColor: '#fbd854',
+    color: '#252849',
+    fontSize: '1.2em',
     marginTop: '20px',
+    border: 'none',
+    fontWeight: '900',
+    width: '100%',
+    textAlign: 'center',
+    marginBottom: '20px',
+    padding: '13px 0',
+  },
+
+  error: {
+    color: '#f4442e',
+    fontSize: '0.9em',
+    textAlign: 'center',
+    marginBottom: '8px',
   },
 });
 
@@ -34,20 +52,20 @@ const renderField =
     type, meta:
     { touched, error },
   }) => {
-    const hasError = (touched && error) ? 'has-danger' : '';
+    const hasError = (touched && error) ? 'error-danger' : '';
     return (
-      <div className={`${hasError}`}>
-        <label>{label}</label>
+      <div>
+        <label className={css(styles.label)}>{label}</label>
         <div>
           <input {...input} placeholder={label} type={type} className={css(styles.input)} />
-          {touched && error && <div>{error}</div>}
+          {touched && error && <div className={`${hasError}`}>{error}</div>}
         </div>
       </div>
     );
   };
 
 const renderErrors = errors => (
-  <div className="alert alert-danger" role="alert">
+  <div className={css(styles.error)} role="alert">
     { errors ? <span>{ errors }</span> : null }
   </div>
 
