@@ -7,12 +7,24 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+.site {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.site-content {
+    flex: 1;
+    background-color: #252849;
+    padding: 10px;
+}
+
 .container {
     max-width: 900px;
 }
 
 .error-danger {
-    color:#f4442e;
+    color: #f4442e;
     text-align: center;
     font-size: 0.9em;
 }

@@ -1,5 +1,5 @@
 // import React, { Fragment } from 'react';
-// import ListHeaderContainer from "../../containers/ListHeaderContainer/ListHeaderContainer";
+// import ListContainer from "../../containers/ListContainer/ListContainer";
 //
 // export default (props) => (
 //   <Fragment>

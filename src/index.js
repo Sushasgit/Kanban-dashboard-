@@ -23,12 +23,14 @@ if (token) {
 render(
   <Provider store={store}>
     <Router history={history} onUpdate={() => window.scrollTo(0, 0)}>
-      <div>
+      <div className='site'>
         <Header/>
-        <Route exact path="/" component={HomePageContainer} />
-        <Route exact path="/signup" component={SignUpPage} />
-        <Route exact path="/signin" component={SignInPage} />
-        <Route path="/dashboard/:userID" component={RequireAuth(DashboardPageContainer)} />
+        <div className='site-content'>
+          <Route exact path="/" component={HomePageContainer} />
+          <Route exact path="/signup" component={SignUpPage} />
+          <Route exact path="/signin" component={SignInPage} />
+          <Route path="/dashboard/:userID" component={RequireAuth(DashboardPageContainer)} />
+        </div>
         <Footer/>
       </div>
   </Router>

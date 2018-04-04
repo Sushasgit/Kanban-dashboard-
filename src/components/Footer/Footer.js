@@ -5,13 +5,15 @@ const styles = StyleSheet.create({
   footer: {
     backgroundColor: '#121a2f',
     fontFamily: 'Kanit, sans-serif',
+    padding: '20px',
+    textAlign: 'center',
   },
+
   link: {
-    textDecoration: 'none',
     color: '#fbd854',
-    fontSize: '2.8em',
+    fontSize: '1.1em',
     fontWeight: '900',
-    padding: '15px',
+    padding: '0 15px',
   },
 });
 
@@ -20,7 +22,7 @@ class Footer extends React.Component {
     return (
       <Fragment>
         <footer className={css(styles.footer)} >
-          <a className={css(styles.link)} href='#'>Dashboard/</a>
+          <span className={css(styles.link)}>© 2018 Dashboard, All rights reserved.</span>
         </footer>
       </Fragment>
     );

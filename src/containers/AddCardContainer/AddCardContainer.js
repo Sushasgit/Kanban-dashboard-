@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { css, StyleSheet } from 'aphrodite/no-important';
-import { createList } from '../../actions/listsActions';
+import { createCard } from '../../actions/cardActions';
 
 const styles = StyleSheet.create({
   btn: {
@@ -20,49 +20,53 @@ const styles = StyleSheet.create({
   },
 });
 
-class AddListsContainer extends Component {
+class AddCardContainer extends Component {
   constructor() {
     super();
 
     this.state = {
       isOpen: false,
-      listTitle: '',
+      newText: '',
     };
   }
 
-  handleBlur = () => { (this.setState({ isOpen: false })); };
-
   handleChange = (event) => {
-    this.setState({ listTitle: event.target.value });
+    this.setState({ newText: event.target.value });
+  };
+
+  toggleCard = () => {
+    this.setState({ isOpen: !this.state.isOpen });
   };
 
   handleKeyDown = (event) => {
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      this.handleSubmit();
+    if (event.keyCode === 13 && event.shiftKey === false) {
+      this.handleSubmit(event);
     } else if (event.keyCode === 27) {
-      this.setState({ isOpen: false, listTitle: '' });
+      this.toggleCard();
     }
   };
 
-  handleSubmit = () => {
-    const { listTitle } = this.state;
-    const listId = Math.floor(Math.random() * (100 - 5)) + 5;
-    if (listTitle === '') return;
-    this.props.createList(listTitle, listId);
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const { newText } = this.state;
+    const { listId } = this.props;
+    if (newText === '') return;
 
-    this.setState({ isOpen: false, listTitle: '' });
+    const cardId = Math.floor(Math.random() * (100 - 5)) + 5;
+    this.props.createCard(newText, cardId, listId);
+    this.toggleCard();
+    this.setState({ newText: '' });
   };
 
   render = () => {
-    const { isOpen, listTitle } = this.state;
+    const { newText, isOpen } = this.state;
     if (!isOpen) {
       return (
         <button
           onClick={() => this.setState({ isOpen: true })}
           className={css(styles.btn)}
         >
-          Add a new list...
+          +
         </button>
       );
     }
@@ -70,17 +74,17 @@ class AddListsContainer extends Component {
     return (
       <div className='list'>
         <input
-          autoFocus
-          value={listTitle}
           onChange={this.handleChange}
           onKeyDown={this.handleKeyDown}
+          value={newText}
           className={css(styles.input)}
-          onBlur={this.handleBlur}
+          placeholder="Add a new card..."
           spellCheck={false}
+          onBlur={this.toggleCard}
         />
       </div>
     );
   };
 }
 
-export default connect(null, { createList })(AddListsContainer);
+export default connect(null, { createCard })(AddCardContainer);

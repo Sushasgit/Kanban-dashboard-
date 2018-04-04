@@ -10,3 +10,9 @@ export const ADD_LIST = 'ADD_LIST';
 export const FETCH_ALL_LISTS = 'FETCH_ALL_LISTS';
 export const CHANGE_LIST_TITLE = 'CHANGE_LIST_TITLE';
 export const DELETE_LIST = 'DELETE_LIST';
+
+export const ADD_CARD = 'ADD_CARD';
+export const CHANGE_CARD_TEXT = 'CHANGE_CARD_TEXT';
+export const CHANGE_CARD_DATE = 'CHANGE_CARD_DATE';
+export const CHANGE_CARD_COLOR = 'CHANGE_CARD_COLOR';
+export const DELETE_CARD = 'DELETE_CARD';
