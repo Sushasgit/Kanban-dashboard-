@@ -24,9 +24,8 @@ export function createList(listTitle, listId) {
     const userID = firebase.auth().currentUser.uid;
     dispatch(createListSuccess(listTitle, listId));
     const usersListsRef = db.ref(`users/${userID}/lists/`).push();
-    const userListKey = usersListsRef.key;
-    console.log(userListKey);
-    usersListsRef.set({ listId, listTitle });
+    const listKey = usersListsRef.key;
+    usersListsRef.set({ listId, listTitle, listKey });
   };
 }
 
@@ -42,7 +41,6 @@ export function getAllLists() {
         const childData = childItem.val();
         arr.push(childData);
       });
-      console.log(arr);
       dispatch(fetchListSuccess(arr));
     });
   };

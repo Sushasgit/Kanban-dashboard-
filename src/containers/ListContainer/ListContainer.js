@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { css, StyleSheet } from 'aphrodite/no-important';
-import { changeListTitle } from '../../actions/listsActions';
+import { changeListTitle, createListSuccess } from '../../actions/listsActions';
 import AddCardContainer from '../../containers/AddCardContainer/AddCardContainer';
+
+import Card from '../../components/Card/Card';
 
 const styles = StyleSheet.create({
   list: {
@@ -37,6 +39,12 @@ class ListContainer extends React.Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.lists.map((item) => { (this.props.getAllCards(item.listKey)); });
+    }
+  }
+
   render() {
     return (
       <Fragment>
@@ -48,9 +56,11 @@ class ListContainer extends React.Component {
                   {item.listTitle}
                 </header>
                 <div className={css(styles.body)}>
-                  List body. Here will be a card.
+                  {item.cards ? Object.keys(item.cards).map(itemCard => (
+                      <Card key={itemCard} card={item.cards[itemCard]}/>
+                    )) : null}
                 </div>
-                <AddCardContainer listId={item.listId}/>
+                <AddCardContainer listId={item.listKey} />
               </div>);
             }) : null
         }
@@ -63,7 +73,8 @@ class ListContainer extends React.Component {
 function mapStateToProps(state) {
   return {
     lists: state.lists.lists,
+    cards: state.cards,
   };
 }
 
-export default connect(mapStateToProps, { changeListTitle })(ListContainer);
+export default connect(mapStateToProps, { createListSuccess, changeListTitle })(ListContainer);

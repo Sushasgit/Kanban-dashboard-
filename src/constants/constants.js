@@ -12,6 +12,7 @@ export const CHANGE_LIST_TITLE = 'CHANGE_LIST_TITLE';
 export const DELETE_LIST = 'DELETE_LIST';
 
 export const ADD_CARD = 'ADD_CARD';
+export const FETCH_ALL_CARDS = 'FETCH_ALL_CARDS';
 export const CHANGE_CARD_TEXT = 'CHANGE_CARD_TEXT';
 export const CHANGE_CARD_DATE = 'CHANGE_CARD_DATE';
 export const CHANGE_CARD_COLOR = 'CHANGE_CARD_COLOR';

@@ -7,16 +7,36 @@ export const createCardSuccess = card => ({
   payload: card,
 });
 
+export const fetchCardsSuccess = lists => ({
+  type: constants.FETCH_ALL_CARDS,
+  payload: lists,
+});
+
 /* TODO add listId to this function. Fix creation structure in firebase */
 
-export function createCard(newText, cardId) {
+export function createCard(newText, cardId, listId) {
   const db = firebase.database();
   return (dispatch) => {
     const userID = firebase.auth().currentUser.uid;
     dispatch(createCardSuccess(newText, cardId));
-    const usersListsRef = db.ref(`users/${userID}/lists/`).push();
-    const userListKey = usersListsRef.key;
-    db.ref(`users/${userID}/lists/${userListKey}/cards`).push({ newText, cardId });
+    db.ref(`users/${userID}/lists/${listId}/cards`).push({ newText, cardId });
   };
 }
 
+export function getAllCards(listID) {
+  const db = firebase.database();
+  return (dispatch) => {
+    // const userID = firebase.auth().currentUser.uid;
+    const userID = window.localStorage.getItem('id');
+    const cards = db.ref(`users/${userID}/lists/${listID}/cards`);
+    cards.on('value', (snapshot) => {
+      const arr = [];
+      snapshot.forEach((childItem) => {
+        const childData = childItem.val();
+        arr.push(childData);
+      });
+      console.log(arr);
+      dispatch(fetchCardsSuccess(arr));
+    });
+  };
+}

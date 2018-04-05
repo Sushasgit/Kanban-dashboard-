@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { css, StyleSheet } from 'aphrodite/no-important';
+import { database } from '../../firebase/firebase'; // eslint-disable-line no-unused-vars
 import { createCard } from '../../actions/cardActions';
 
 const styles = StyleSheet.create({
@@ -51,7 +52,6 @@ class AddCardContainer extends Component {
     const { newText } = this.state;
     const { listId } = this.props;
     if (newText === '') return;
-
     const cardId = Math.floor(Math.random() * (100 - 5)) + 5;
     this.props.createCard(newText, cardId, listId);
     this.toggleCard();

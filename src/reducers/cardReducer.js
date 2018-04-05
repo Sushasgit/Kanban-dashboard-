@@ -6,6 +6,12 @@ export default (state = {}, action) => {
       const { cardText, cardId } = action.payload;
       return { ...state, [cardId]: { text: cardText, _id: cardId } };
     }
+    case constants.FETCH_ALL_CARDS: {
+      return {
+        ...state,
+        cards: action.payload,
+      };
+    }
     case constants.CHANGE_CARD_TEXT: {
       const { cardText, cardId } = action.payload;
       return { ...state, [cardId]: { ...state[cardId], text: cardText } };
