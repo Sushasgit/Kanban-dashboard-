@@ -24,6 +24,7 @@ export function createCard(newText, cardId, listId) {
 }
 
 export function getAllCards(listID) {
+  console.log(test)
   const db = firebase.database();
   return (dispatch) => {
     // const userID = firebase.auth().currentUser.uid;
@@ -34,8 +35,8 @@ export function getAllCards(listID) {
       snapshot.forEach((childItem) => {
         const childData = childItem.val();
         arr.push(childData);
+        console.log(arr);
       });
-      console.log(arr);
       dispatch(fetchCardsSuccess(arr));
     });
   };

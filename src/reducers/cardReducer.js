@@ -7,6 +7,7 @@ export default (state = {}, action) => {
       return { ...state, [cardId]: { text: cardText, _id: cardId } };
     }
     case constants.FETCH_ALL_CARDS: {
+      console.log(action.payload);
       return {
         ...state,
         cards: action.payload,

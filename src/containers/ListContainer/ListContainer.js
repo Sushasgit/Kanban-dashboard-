@@ -40,12 +40,16 @@ class ListContainer extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.lists)
+    console.log(this.props.isAuthenticated)
     if (this.props.isAuthenticated) {
+      console.log('test cards')
       this.props.lists.map((item) => { (this.props.getAllCards(item.listKey)); });
     }
   }
 
   render() {
+    console.log(this.props.lists);
     return (
       <Fragment>
         {
@@ -74,6 +78,7 @@ function mapStateToProps(state) {
   return {
     lists: state.lists.lists,
     cards: state.cards,
+    isAuthenticated: state.auth.isAuthenticated,
   };
 }
 
