@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 import { StyleSheet, css } from 'aphrodite/no-important';
-import AddListsContainer from '../../containers/AddListsContainer/AddListsContainer';
-import UserListsContainer from '../../containers/UserListsContainer/UserListsContainer';
 
 const styles = StyleSheet.create({
   lists: {
@@ -16,8 +14,7 @@ const styles = StyleSheet.create({
 export default () => (
   <Fragment>
     <section className={css(styles.lists)}>
-      <UserListsContainer/>
-      <AddListsContainer/>
+      Dashboard here
     </section>
   </Fragment>
 );
